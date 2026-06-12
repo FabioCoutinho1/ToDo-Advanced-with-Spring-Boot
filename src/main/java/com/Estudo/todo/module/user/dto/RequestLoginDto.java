@@ -1,11 +1,14 @@
 package com.Estudo.todo.module.user.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public record RequestLoginDto(
-        @NotNull
+        @NotBlank(message = "Nome de usuario e Obrigatorio")
         String userName,
-        @NotNull
+        @NotBlank(message = "Senha e Obrigatória")
+        @Size(min = 6, max = 50)
         String password
 ) {
 }

@@ -6,10 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Getter
 @Setter
-public class RestErrorMessage {
+public class RestErrorMessageList<T> {
     private HttpStatus httpStatus;
-    private String message;
+    private List<T> message;
 }

@@ -1,5 +1,6 @@
 package com.Estudo.todo.module.auth.service;
 
+import com.Estudo.todo.exception.InvalidCredentialsException;
 import org.jspecify.annotations.NullMarked;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -15,6 +15,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -37,12 +39,24 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<Object> useLogin (@Valid @RequestBody RequestLoginDto dto){
-        var userNamePassword = new UsernamePasswordAuthenticationToken(dto.userName(), dto.password());
+        try {
+            var userNamePassword =
+                    new UsernamePasswordAuthenticationToken(
+                            dto.userName(),
+                            dto.password());
 
-        var auth = this.authenticationManager.authenticate(userNamePassword);
+            var auth = authenticationManager.authenticate(userNamePassword);
 
-        String token = tokenService.generateToken((User) auth.getPrincipal());
-        return ResponseEntity.ok(new ResponseLoginDto(token));
+            String token = tokenService.generateToken(
+                    (User) auth.getPrincipal());
+
+            return ResponseEntity.ok(new ResponseLoginDto(token));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getClass());
+            throw e;
+        }
     }
 
     @PostMapping("/register")
