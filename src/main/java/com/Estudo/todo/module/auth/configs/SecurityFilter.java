@@ -28,17 +28,15 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    @Qualifier("handlerExceptionResolver")
-    private HandlerExceptionResolver exceptionResolver;
-
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
-        try{
+
             var token = this.recoverToken(request);
 
             if(token != null){
+
                 String subjectId = tokenService.validateToken(token);
+
                 Long userId = Long.parseLong(subjectId);
 
                 UserDetails user = userRepository.findById(userId).orElseThrow(() -> new InvalidCredentialsException("Credenciais invalidas"));
@@ -49,11 +47,6 @@ public class SecurityFilter extends OncePerRequestFilter {
 
             }
             filterChain.doFilter(request, response); // chama o proximo filtro
-
-        } catch (Exception e) {
-            exceptionResolver.resolveException(request, response, null, e);
-            return;
-        }
 
     }
 

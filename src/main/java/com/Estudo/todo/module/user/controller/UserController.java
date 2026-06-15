@@ -30,7 +30,7 @@ public class UserController {
     @Autowired
     TokenService tokenService;
 
-    @GetMapping("/{name}")
+    @GetMapping("/admin/{name}")
     public ResponseEntity<UserDetails> getUserByName ( @PathVariable("name") String dto){
       UserDetails user = userService.getUser(dto);
 
