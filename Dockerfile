@@ -1,8 +1,19 @@
-FROM eclipse-temurin:21-jdk
+FROM eclipse-temurin:21-jdk AS builder
 LABEL authors="fabiofariascoutinho"
 
 WORKDIR /app
 
-COPY target/*.jar app.jar
+COPY . .
 
-ENTRYPOINT ["java", "-jar", "app.jar", "--spring.profiles.active"]
+RUN chmod +x mvnw
+
+RUN ./mvnw clean package -DskipTests
+
+
+FROM eclipse-temurin:21-jre
+
+WORKDIR /app
+
+COPY --from=builder /app/target/*.jar app.jar
+
+CMD ["java", "-jar", "app.jar"]

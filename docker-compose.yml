@@ -2,6 +2,7 @@ services:
   app:
     build: .
     environment:
+      SPRING_PROFILES_ACTIVE: default
       DB_URL: jdbc:postgresql://postgres:5432/estudos
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
@@ -19,6 +20,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=estudos
 
+    
     ports:
       - "5432:5432"
 
