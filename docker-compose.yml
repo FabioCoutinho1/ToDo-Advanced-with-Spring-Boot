@@ -1,4 +1,15 @@
 services:
+  app:
+    build: .
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/estudos
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres:17
     container_name: postgres-study
