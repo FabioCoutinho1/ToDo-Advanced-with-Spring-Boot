@@ -49,7 +49,7 @@ public class SecurityConfigurations {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("https://geranciador-de-tarefas.vercel.app/"));
+        configuration.setAllowedOrigins(List.of("https://geranciador-de-tarefas.vercel.app/", "http://localhost:5173/"));
         configuration.setAllowedMethods(List.of("*"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
