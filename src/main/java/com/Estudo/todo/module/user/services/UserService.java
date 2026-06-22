@@ -5,9 +5,12 @@ import com.estudo.todo.module.user.dto.RequestRegisterDto;
 import com.estudo.todo.module.user.entity.User;
 import com.estudo.todo.module.user.repository.UserRepository;
 import com.estudo.todo.module.user.userRole.UserRole;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 public class UserService {
@@ -18,6 +21,14 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    private long getCurrentUserId() {
+        User user = (User) Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication()).getPrincipal();
+        if (user == null) {
+            throw new RuntimeException("User not found in security context");
+        }
+        return user.getId();
+    }
+
     public UserDetails getUser(String dto) {
         UserDetails response = userRepository.findByUserName(dto);
 
@@ -26,6 +37,10 @@ public class UserService {
         }
 
         return response;
+    }
+
+    public UserDetails userInfos() {
+        return userRepository.findById(getCurrentUserId());
     }
 
     public void registerUser(RequestRegisterDto dto) {
