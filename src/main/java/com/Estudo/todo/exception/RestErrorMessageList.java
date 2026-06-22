@@ -1,4 +1,4 @@
-package com.Estudo.todo.exception;
+package com.estudo.todo.exception;
 
 import org.springframework.http.HttpStatus;
 

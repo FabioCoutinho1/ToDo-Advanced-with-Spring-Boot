@@ -1,4 +1,4 @@
-package com.Estudo.todo.module.user.entity;
+package com.estudo.todo.module.user.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -12,7 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.Estudo.todo.module.user.userRole.UserRole;
+import com.estudo.todo.module.user.userRole.UserRole;
 
 @Entity
 @Table(name = "users")

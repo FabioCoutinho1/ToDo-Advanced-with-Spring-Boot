@@ -1,4 +1,4 @@
-package com.Estudo.todo.exception;
+package com.estudo.todo.exception;
 
 public class InvalidCredentialsException extends RuntimeException {
     public InvalidCredentialsException(String message) {

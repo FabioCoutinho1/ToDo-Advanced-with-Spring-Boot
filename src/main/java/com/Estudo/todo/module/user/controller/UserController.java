@@ -1,11 +1,5 @@
-package com.Estudo.todo.module.user.controller;
+package com.estudo.todo.module.user.controller;
 
-import com.Estudo.todo.module.auth.service.TokenService;
-import com.Estudo.todo.module.user.dto.RequestLoginDto;
-import com.Estudo.todo.module.user.dto.RequestRegisterDto;
-import com.Estudo.todo.module.user.dto.ResponseLoginDto;
-import com.Estudo.todo.module.user.entity.User;
-import com.Estudo.todo.module.user.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +7,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import com.estudo.todo.module.auth.service.TokenService;
+import com.estudo.todo.module.user.dto.RequestLoginDto;
+import com.estudo.todo.module.user.dto.RequestRegisterDto;
+import com.estudo.todo.module.user.dto.ResponseLoginDto;
+import com.estudo.todo.module.user.entity.User;
+import com.estudo.todo.module.user.services.UserService;
 
 import java.util.Map;
 

@@ -1,7 +1,7 @@
-package com.Estudo.todo.module.task.mapper;
+package com.estudo.todo.module.task.mapper;
 
-import com.Estudo.todo.module.task.dto.ResponseTaskDto;
-import com.Estudo.todo.module.task.entity.Task;
+import com.estudo.todo.module.task.dto.ResponseTaskDto;
+import com.estudo.todo.module.task.entity.Task;
 
 public class ResponseTaskMapper {
 

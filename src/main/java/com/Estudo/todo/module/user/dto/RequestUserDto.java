@@ -1,4 +1,4 @@
-package com.Estudo.todo.module.user.dto;
+package com.estudo.todo.module.user.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

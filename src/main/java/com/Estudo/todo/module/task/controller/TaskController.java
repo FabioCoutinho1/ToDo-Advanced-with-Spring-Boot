@@ -1,12 +1,13 @@
-package com.Estudo.todo.module.task.controller;
+package com.estudo.todo.module.task.controller;
 
-import com.Estudo.todo.module.task.dto.RequestCreatNewTaskDto;
-import com.Estudo.todo.module.task.dto.RequestUpdateTaskDto;
-import com.Estudo.todo.module.task.dto.ResponseTaskDto;
-import com.Estudo.todo.module.task.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.estudo.todo.module.task.dto.RequestCreatNewTaskDto;
+import com.estudo.todo.module.task.dto.RequestUpdateTaskDto;
+import com.estudo.todo.module.task.dto.ResponseTaskDto;
+import com.estudo.todo.module.task.service.TaskService;
 
 import java.util.List;
 

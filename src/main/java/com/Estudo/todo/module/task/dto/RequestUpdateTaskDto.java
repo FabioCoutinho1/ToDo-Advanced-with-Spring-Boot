@@ -1,4 +1,4 @@
-package com.Estudo.todo.module.task.dto;
+package com.estudo.todo.module.task.dto;
 
 import jakarta.validation.constraints.Size;
 
