@@ -1,4 +1,4 @@
-package com.Estudo.todo.module.user.userRole;
+package com.estudo.todo.module.user.userRole;
 
 import lombok.Getter;
 

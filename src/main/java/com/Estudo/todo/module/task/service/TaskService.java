@@ -1,16 +1,15 @@
-package com.Estudo.todo.module.task.service;
+package com.estudo.todo.module.task.service;
 
-import com.Estudo.todo.exception.TaskNotFaundException;
-import com.Estudo.todo.module.task.dto.RequestCreatNewTaskDto;
-import com.Estudo.todo.module.task.dto.RequestUpdateTaskDto;
-import com.Estudo.todo.module.task.dto.ResponseTaskDto;
-import com.Estudo.todo.module.task.entity.Task;
-import com.Estudo.todo.module.task.mapper.ResponseTaskMapper;
-import com.Estudo.todo.module.task.repository.TaskRepository;
-import com.Estudo.todo.module.user.entity.User;
-import com.Estudo.todo.module.user.repository.UserRepository;
+import com.estudo.todo.exception.TaskNotFaundException;
+import com.estudo.todo.module.task.dto.RequestCreatNewTaskDto;
+import com.estudo.todo.module.task.dto.RequestUpdateTaskDto;
+import com.estudo.todo.module.task.dto.ResponseTaskDto;
+import com.estudo.todo.module.task.entity.Task;
+import com.estudo.todo.module.task.mapper.ResponseTaskMapper;
+import com.estudo.todo.module.task.repository.TaskRepository;
+import com.estudo.todo.module.user.entity.User;
+import com.estudo.todo.module.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +20,13 @@ import java.util.Objects;
 @Service
 public class TaskService {
 
-    @Autowired
-    TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    UserRepository userRepository;
+    public TaskService(TaskRepository taskRepository, UserRepository userRepository) {
+        this.taskRepository = taskRepository;
+        this.userRepository = userRepository;
+    }
 
 
     private Task findTaskOrThrwo(long id) {
@@ -33,7 +34,7 @@ public class TaskService {
     }
 
     private Long getCurrentUserId() {
-        User user =  (User) (Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication())).getPrincipal();
+        User user = (User) (Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication())).getPrincipal();
         if (user == null) {
             throw new RuntimeException("User not found in security context");
         }
@@ -49,7 +50,7 @@ public class TaskService {
     public ResponseTaskDto getTaskById(long id) {
         Task task = taskRepository.findById(id).orElseThrow(() -> new TaskNotFaundException());
 
-        if(task.getUser().getId() != this.getCurrentUserId()) throw new TaskNotFaundException();
+        if (task.getUser().getId() != this.getCurrentUserId()) throw new TaskNotFaundException();
 
         return ResponseTaskMapper.toResponse(task);
 

@@ -1,11 +1,12 @@
-package com.Estudo.todo.module.task.entity;
+package com.estudo.todo.module.task.entity;
 
-import com.Estudo.todo.module.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+
+import com.estudo.todo.module.user.entity.User;
 
 @Getter
 @Setter

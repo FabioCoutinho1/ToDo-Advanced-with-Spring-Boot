@@ -1,6 +1,5 @@
-package com.Estudo.todo.module.auth.configs;
+package com.estudo.todo.module.auth.configs;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -25,11 +24,15 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfigurations {
 
-    @Autowired
-    SecurityFilter securityFilter;
+    private final SecurityFilter securityFilter;
+
+    public SecurityConfigurations(SecurityFilter securityFilter) {
+        this.securityFilter = securityFilter;
+    }
+
 
     @Bean
-    public SecurityFilterChain SecurityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 

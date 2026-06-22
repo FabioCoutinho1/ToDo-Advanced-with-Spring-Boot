@@ -1,14 +1,10 @@
-package com.Estudo.todo.module.user.services;
+package com.estudo.todo.module.user.services;
 
-import com.Estudo.todo.exception.InvalidCredentialsException;
-import com.Estudo.todo.exception.UserNotFaundException;
-
-import com.Estudo.todo.module.user.dto.RequestRegisterDto;
-
-import com.Estudo.todo.module.user.entity.User;
-import com.Estudo.todo.module.user.repository.UserRepository;
-import com.Estudo.todo.module.user.userRole.UserRole;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.estudo.todo.exception.InvalidCredentialsException;
+import com.estudo.todo.module.user.dto.RequestRegisterDto;
+import com.estudo.todo.module.user.entity.User;
+import com.estudo.todo.module.user.repository.UserRepository;
+import com.estudo.todo.module.user.userRole.UserRole;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,13 +12,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public UserDetails getUser(String dto) {
         UserDetails response = userRepository.findByUserName(dto);
 
-        if(response == null){
+        if (response == null) {
             throw new InvalidCredentialsException("Credenciais invalidas");
         }
 
@@ -30,7 +29,7 @@ public class UserService {
     }
 
     public void registerUser(RequestRegisterDto dto) {
-        if( userRepository.findByUserName(dto.userName()) != null) {
+        if (userRepository.findByUserName(dto.userName()) != null) {
             throw new InvalidCredentialsException("Usuario ja existe");
         }
 
